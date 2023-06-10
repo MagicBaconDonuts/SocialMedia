@@ -3,16 +3,14 @@ package com.SocialMediaBackEnd.Domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "Channels")
 public class Channel {
 
 	private Long id;
@@ -48,6 +46,4 @@ public class Channel {
 	public void setUser(List<User> user) {
 		this.user = user;
 	}
-	
-	
 }
