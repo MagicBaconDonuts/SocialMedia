@@ -1,7 +1,9 @@
 package com.SocialMediaBackEnd.Domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +26,7 @@ public class User {
 	private String password;
 	private List<Message> message = new ArrayList<Message>();
 	private List<Channel> channel = new ArrayList<Channel>();
+	private Set<Authority> authority = new HashSet<>();
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
@@ -79,4 +82,12 @@ public class User {
 	public void setChannel(List<Channel> channel) {
 		this.channel = channel;
 	}
+	@OneToMany(mappedBy = "user")
+	public Set<Authority> getAuthority() {
+		return authority;
+	}
+	public void setAuthority(Set<Authority> authority) {
+		this.authority = authority;
+	}
+	
 }
