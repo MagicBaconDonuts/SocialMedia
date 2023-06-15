@@ -4,18 +4,25 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import com.SocialMediaBackEnd.Domain.Authority;
 import com.SocialMediaBackEnd.Domain.User;
 
+//@Component
 public class CustomSecurityUser extends User implements UserDetails {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3948787477194083135L;
+	
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 
 	public CustomSecurityUser() {}
 	
@@ -40,25 +47,25 @@ public class CustomSecurityUser extends User implements UserDetails {
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }
