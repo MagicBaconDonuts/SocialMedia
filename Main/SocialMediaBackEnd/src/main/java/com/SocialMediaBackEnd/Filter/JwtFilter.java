@@ -13,21 +13,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.SocialMediaBackEnd.Repository.UserRepository;
 import com.SocialMediaBackEnd.Service.UserDetailsServiceImpl;
 import com.SocialMediaBackEnd.Util.JwtUtil;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-
-	@Autowired
-	private UserRepository userRepo;
 	
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
@@ -40,8 +35,9 @@ public class JwtFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		// Get authorization header and validate
 		final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-		if(StringUtils.hasText(header) || !header.startsWith("Bearer ")) {
+		if(!StringUtils.hasText(header) || (StringUtils.hasText(header) && !header.startsWith("Bearer "))) {
 			filterChain.doFilter(request, response);
+			return;
 		}
 		
 		// Get user identity and set it on the spring security context

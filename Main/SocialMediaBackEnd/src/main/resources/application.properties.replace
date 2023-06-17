@@ -4,3 +4,8 @@ spring.datasource.username = replace
 spring.datasource.password = replace
 spring.jpa.hibernate.ddl-auto = create
 spring.jpa.show-sql = true
+spring.main.allow-circular-references: true
+
+jwt.secret = F2#&Nfr3ajzjPz#VYTABH*UiGGgn@Dmf6H1EHKpxE&IXWxbWQ7
+
+spring.security.filter.order = 10

@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "_user")
 public class User {
@@ -28,28 +30,28 @@ public class User {
 	private List<Channel> channel = new ArrayList<Channel>();
 	private Set<Authority> authority = new HashSet<>();
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) @JsonIgnore
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@Column(unique = true, nullable = false)
+	@Column(unique = true, nullable = false)@JsonIgnore
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	@Column(nullable = false)
+	@Column(nullable = false)@JsonIgnore
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Column(nullable = false)
+	@Column(nullable = false)@JsonIgnore
 	public String getLastName() {
 		return lastName;
 	}
@@ -62,27 +64,28 @@ public class User {
 //	public void setEmail(String email) {
 //		this.email = email;
 //	}
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user")@JsonIgnore
 	public List<Message> getMessage() {
 		return message;
 	}
 	public void setMessage(List<Message> message) {
 		this.message = message;
 	}
-	@ManyToMany
+	@ManyToMany @JsonIgnore
 	public List<Channel> getChannel() {
 		return channel;
 	}
 	public void setChannel(List<Channel> channel) {
 		this.channel = channel;
 	}
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user") @JsonIgnore
 	public Set<Authority> getAuthority() {
 		return authority;
 	}

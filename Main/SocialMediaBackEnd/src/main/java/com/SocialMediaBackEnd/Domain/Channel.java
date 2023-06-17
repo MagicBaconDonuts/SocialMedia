@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Channel {
 
@@ -19,27 +21,28 @@ public class Channel {
 	private List<Message> message = new ArrayList<Message>();
 	private List<User> user = new ArrayList<>();
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) @JsonIgnore
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@JsonIgnore
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	@OneToMany(mappedBy = "channel")
+	@OneToMany(mappedBy = "channel") @JsonIgnore
 	public List<Message> getMessage() {
 		return message;
 	}
 	public void setMessage(List<Message> message) {
 		this.message = message;
 	}
-	@ManyToMany
+	@ManyToMany @JsonIgnore
 	public List<User> getUser() {
 		return user;
 	}

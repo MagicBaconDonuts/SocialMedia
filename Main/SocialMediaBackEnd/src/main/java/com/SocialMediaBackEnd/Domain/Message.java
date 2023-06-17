@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Message {
 
@@ -14,27 +16,28 @@ public class Message {
 	private Channel channel;
 	private User user;
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) @JsonIgnore
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@JsonIgnore
 	public String getMessage() {
 		return message;
 	}
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	@ManyToOne
+	@ManyToOne @JsonIgnore
 	public Channel getChannel() {
 		return channel;
 	}
 	public void setChannel(Channel channel) {
 		this.channel = channel;
 	}
-	@ManyToOne
+	@ManyToOne @JsonIgnore
 	public User getUser() {
 		return user;
 	}
