@@ -38,8 +38,6 @@ public class AuthController {
 
             CustomSecurityUser user = (CustomSecurityUser) authenticate.getPrincipal();
             user.setPassword(null);
-            System.out.println(user.getUsername().toString());
-            System.out.println(user.getUsername());
             return ResponseEntity.ok()
                 .header(
                     HttpHeaders.AUTHORIZATION,

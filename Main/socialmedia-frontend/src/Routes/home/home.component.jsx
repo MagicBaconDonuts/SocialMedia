@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useLocalState } from '../../Components/util/useLocalStorage';
+import { useLocalState } from '../../util/useLocalStorage';
 
 export default function Home() {
 
@@ -25,25 +25,25 @@ export default function Home() {
   // }
 
     const [jwt, setJwt] = useLocalState("", "jwt");
-    useEffect(() => {
-        if(!jwt) {
-            const user = {
-                username: "test",
-                password: "password"
-            };
+    // useEffect(() => {
+    //     if(!jwt) {
+    //         const user = {
+    //             username: "test",
+    //             password: "password"
+    //         };
           
-            fetch("/api/auth/login", {
-                "headers": {
-                    "Content-Type" : "application/json"
-                },
-                "method": "post",
-                "body": JSON.stringify(user)
-            }).then((response) => Promise.all([response.json(), response.headers]))
-            .then(([body,headers]) => {
-                setJwt(headers.get("authorization"));
-            });
-        }
-    }, []);
+    //         fetch("/api/auth/login", {
+    //             "headers": {
+    //                 "Content-Type" : "application/json"
+    //             },
+    //             "method": "post",
+    //             "body": JSON.stringify(user)
+    //         }).then((response) => Promise.all([response.json(), response.headers]))
+    //         .then(([body,headers]) => {
+    //             setJwt(headers.get("authorization"));
+    //         });
+    //     }
+    // }, []);
 
     useEffect(() => {
         console.log(`JWT is ${jwt}`);
@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div>
         <div>
-            Home/Register
+            Home Page
         </div>
         {/* <form onSubmit={(e) => onSubmit(e)}>
             <div>
